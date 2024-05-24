@@ -43,7 +43,7 @@ echo:
 cd /D %~dp0DO_NOT_OPEN_OR_DELETE
 FOR /F "delims=" %%i IN ('dir /b /s %input_path%\*.stl') DO (
     CALL OCR_STL.exe "%%~ni" "-1.0"
-    CALL SUB-ADD-STL.exe "%output_path%\%%~ni.stl" ".\fixture.stl" ".\tag.stl" %%i
+    CALL SUB-ADD-STL.exe -F fixture.stl -T tag.stl -I %%i -O "%output_path%\%%~ni.stl"
     
     IF exist %output_path%\"%%~ni".stl (
         SET /a doneCNT+=1
